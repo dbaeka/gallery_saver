@@ -92,7 +92,9 @@ internal object FileUtils {
         } catch (e: IOException) {
             contentResolver.delete(imageUri!!, null, null)
             return false
-        }
+        } catch (t: Throwable) { // IllegalArgumentException: Invalid column NULL
+            return false
+        }	 
 
         return true
     }
